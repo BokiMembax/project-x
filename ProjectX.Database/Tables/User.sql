@@ -8,7 +8,7 @@
     [FirstName]                          NVARCHAR (255)          NOT NULL,
     [LastName]                           NVARCHAR (255)          NOT NULL,
     [Email]                              NVARCHAR (255)          NOT NULL,
-    [Password]                           NVARCHAR (255)          NOT NULL,
+    [PasswordHash]                       NVARCHAR (255)          NOT NULL,
     [PhoneNumber]                        NVARCHAR (255)          NOT NULL,
     [CompanyId]                          INT                     NOT NULL
     CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([Id] ASC),

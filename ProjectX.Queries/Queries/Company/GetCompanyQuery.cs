@@ -20,9 +20,7 @@ namespace ProjectX.Queries.Queries.Company
         public GetCompanyQueryHandler(IProjectXReadOnlyContext projectReadOnlyContext) : base(projectReadOnlyContext) { }
 
         public async Task<CompanyDto> Handle(GetCompanyQuery request, CancellationToken cancellationToken)
-        {
-            // II - CHECK IF OK WITH A DELETED COMPANY CASE 
-
+        {           
             var response = await _projectXReadOnlyContext.Set<Entities.Company.Company>()
                                                                               .Where(x => x.Uid == request.CompanyUid)
                                                                               .Select(x => new CompanyDto

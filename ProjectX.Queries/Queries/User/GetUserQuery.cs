@@ -21,8 +21,6 @@ namespace ProjectX.Queries.Queries.User
 
         public async Task<UserDto> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
-            // II - CHECK IF OK WITH A DELETED USER CASE 
-
             var response = await _projectXReadOnlyContext.Set<Entities.User.User>()
                                                                            .Where(x => x.Uid == request.UserUid)
                                                                            .Select(x => new UserDto

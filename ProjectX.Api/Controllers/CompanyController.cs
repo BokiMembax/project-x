@@ -6,8 +6,7 @@ using ProjectX.Common.Auth;
 using ProjectX.Queries.Queries.Company;
 
 namespace ProjectX.Api.Controllers
-{
-    [Authorize]
+{    
     [ApiController]
     [Route("api/companies")]
     public class CompanyController : ControllerBase
@@ -21,6 +20,7 @@ namespace ProjectX.Api.Controllers
             _sender = sender;
         }
 
+        [Authorize]
         [HttpGet("{companyUid}")]
         public async Task<Queries.Contracts.Responses.Company.CompanyDto> GetCompany([FromRoute] Guid companyUid)
         {
@@ -28,9 +28,9 @@ namespace ProjectX.Api.Controllers
         }
 
         [HttpPost]
-        public async Task RegisterAccount([FromBody] RegisterAccountRequest accountRequest)
+        public async Task RegisterAccount([FromBody] SignUpRequest accountRequest)
         {
-            await _sender.Send(new RegisterAccountCommand(accountRequest));
+            await _sender.Send(new SignUpCommand(accountRequest));
         }
     }
 }

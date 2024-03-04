@@ -6,30 +6,30 @@ using ProjectX.Storage.UnitOfWork;
 
 namespace ProjectX.Commands.Auth
 {
-    public class RegisterAccountCommand : IRequest<string>
+    public class SignUpCommand : IRequest<string>
     {
-        public RegisterAccountRequest AccountRequest { get; set; }
+        public SignUpRequest AccountRequest { get; set; }
 
-        public RegisterAccountCommand(RegisterAccountRequest accountRequest)
+        public SignUpCommand(SignUpRequest accountRequest)
         {
             AccountRequest = accountRequest;
         }
     }
 
-    public class RegisterAccountCommandHandler : IRequestHandler<RegisterAccountCommand, string>
+    public class SignUpCommandHandler : IRequestHandler<SignUpCommand, string>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICompanyRepository _companyRepository;
         private readonly IUserRepository _userRepository;
 
-        public RegisterAccountCommandHandler(IUnitOfWork unitOfWork, ICompanyRepository companyRepository, IUserRepository userRepository)
+        public SignUpCommandHandler(IUnitOfWork unitOfWork, ICompanyRepository companyRepository, IUserRepository userRepository)
         {
             _unitOfWork = unitOfWork;
             _companyRepository = companyRepository;
             _userRepository = userRepository;
         }
 
-        public async Task<string> Handle(RegisterAccountCommand command, CancellationToken cancellationToken)
+        public async Task<string> Handle(SignUpCommand command, CancellationToken cancellationToken)
         {
             var companyExists = await _companyRepository.DoesCompanyExistAsync(command.AccountRequest.Embs, command.AccountRequest.CompanyEmail);
 
@@ -54,7 +54,7 @@ namespace ProjectX.Commands.Auth
             if (userExists)
             {
                 throw new Exception($"User exists.");                
-            }                       
+            }
 
             var newUser = new Storage.Entities.User.User
             {
@@ -64,7 +64,7 @@ namespace ProjectX.Commands.Auth
                 FirstName = command.AccountRequest.FirstName,
                 LastName = command.AccountRequest.LastName,
                 Email = command.AccountRequest.UserEmail,
-                Password = command.AccountRequest.Password,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(command.AccountRequest.Password),
                 PhoneNumber = command.AccountRequest.UserPhoneNumber,
                 Company = newCompany
             };

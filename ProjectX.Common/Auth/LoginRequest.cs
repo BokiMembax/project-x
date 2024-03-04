@@ -1,6 +1,6 @@
 ﻿namespace ProjectX.Common.Auth
 {
-    public class LoginAccountRequest
+    public class LoginRequest
     {
         public string Email { get; set; } = string.Empty;
 

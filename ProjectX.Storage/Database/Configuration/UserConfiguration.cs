@@ -22,7 +22,7 @@ namespace ProjectX.Storage.Database.Configuration
             builder.Property(x => x.FirstName).HasColumnName("FirstName").HasMaxLength(255).IsRequired();
             builder.Property(x => x.LastName).HasColumnName("LastName").HasMaxLength(255).IsRequired();
             builder.Property(x => x.Email).HasColumnName("Email").HasMaxLength(255).IsRequired();
-            builder.Property(x => x.Password).HasColumnName("Password").HasMaxLength(255).IsRequired();
+            builder.Property(x => x.PasswordHash).HasColumnName("PasswordHash").HasMaxLength(255).IsRequired();
             builder.Property(x => x.PhoneNumber).HasColumnName("PhoneNumber").HasMaxLength(255).IsRequired();
 
             builder.Property(x => x.CompanyId).HasColumnName("CompanyId").HasColumnType("int").IsRequired();

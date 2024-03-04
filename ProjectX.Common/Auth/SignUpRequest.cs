@@ -2,7 +2,7 @@
 
 namespace ProjectX.Common.Auth
 {
-    public class RegisterAccountRequest
+    public class SignUpRequest
     {
         public string Embs { get; set; } = string.Empty;
 

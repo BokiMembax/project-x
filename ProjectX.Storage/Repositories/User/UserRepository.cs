@@ -39,14 +39,6 @@ namespace ProjectX.Storage.Repositories.User
             return await All<Entities.User.User>().AnyAsync(x => x.Embg == embg || x.Email == email || x.PhoneNumber == phoneNumber);
         }
 
-        //public async Task<UserCredentialsDto> GetUserCredentialsAsync(Guid userUid)
-        //{
-        //    var dbUser = await GetUserByUidAsync(userUid);
-
-        //    var dbEmail = dbUser.Email;
-        //    var dbPassword = dbUser.Password;
-        //}
-
         public async Task InsertUserAsync(Entities.User.User user)
         {
             await InsertAsync(user);
