@@ -15,10 +15,6 @@ namespace ProjectX.Queries
 
         protected IQueryable<T> All<T>() where T : BaseEntity
         {
-            // I
-            // return _projectXReadOnlyContext.Set<T>();
-
-            // II
             return _projectXReadOnlyContext.Set<T>().Where(x => x.DeletedOn == null).AsNoTracking();
         }
     }

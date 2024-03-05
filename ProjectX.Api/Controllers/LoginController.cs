@@ -19,9 +19,9 @@ namespace ProjectX.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<TokenResponseDto> LoginAccount([FromBody] LoginAccountRequest accountRequest)
+        public async Task<TokenResponseDto> LoginAccount([FromBody] LoginRequest accountRequest)
         {            
-            return await _sender.Send(new LoginAccountCommand(accountRequest));
+            return await _sender.Send(new LoginCommand(accountRequest));
         }
     }
 }

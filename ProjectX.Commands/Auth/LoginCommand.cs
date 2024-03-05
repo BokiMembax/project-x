@@ -9,32 +9,32 @@ using System.Text;
 
 namespace ProjectX.Commands.Auth
 {
-    public class LoginAccountCommand : IRequest<TokenResponseDto>
+    public class LoginCommand : IRequest<TokenResponseDto>
     {
-        public LoginAccountRequest AccountRequest { get; set; }
+        public LoginRequest AccountRequest { get; set; }
 
-        public LoginAccountCommand(LoginAccountRequest accountRequest)
+        public LoginCommand(LoginRequest accountRequest)
         {
             AccountRequest = accountRequest;
         }
     }
 
-    public class LoginAccountCommandHandler : IRequestHandler<LoginAccountCommand, TokenResponseDto>
+    public class LoginCommandHandler : IRequestHandler<LoginCommand, TokenResponseDto>
     {
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
 
-        public LoginAccountCommandHandler(IUserRepository userRepository, IConfiguration configuration)
+        public LoginCommandHandler(IUserRepository userRepository, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _configuration = configuration;
         }
 
-        public async Task<TokenResponseDto> Handle(LoginAccountCommand command, CancellationToken cancellationToken)
+        public async Task<TokenResponseDto> Handle(LoginCommand command, CancellationToken cancellationToken)
         {
             var dbUser = await _userRepository.GetUserByEmailAsync(command.AccountRequest.Email);
 
-            if (dbUser.Email == command.AccountRequest.Email && dbUser.Password == command.AccountRequest.Password)
+            if (BCrypt.Net.BCrypt.Verify(command.AccountRequest.Password, dbUser.PasswordHash))
             {
                 string token = CreateToken(dbUser);
 

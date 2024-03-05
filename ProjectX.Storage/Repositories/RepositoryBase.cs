@@ -17,7 +17,6 @@ namespace ProjectX.Storage.Repositories
             return _projectXContext.Set<T>();
         }
 
-        // zosto ke nemame insert vo repository base ???
         protected async Task InsertAsync<T>(T entity) where T : BaseEntity
         {
             await _projectXContext.Set<T>().AddAsync(entity);
