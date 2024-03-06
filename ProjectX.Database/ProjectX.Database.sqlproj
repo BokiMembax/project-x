@@ -61,6 +61,7 @@
   <ItemGroup>
     <Build Include="Tables\Company.sql" />
     <Build Include="Tables\User.sql" />
+    <Build Include="Tables\Truck.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ProjectX.Database.publish.xml" />

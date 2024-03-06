@@ -42,9 +42,11 @@ namespace ProjectX.Queries.Database.Configuration
             builder.Property(x => x.IdentityCardIssueDate).HasColumnName("IdentityCardIssueDate").HasColumnType("datetime2");
             builder.Property(x => x.IdentityCardExpiryDate).HasColumnName("IdentityCardExpiryDate").HasColumnType("datetime2");
 
+            builder.Property(x => x.TruckId).HasColumnName("TruckId").HasColumnType("int");
             builder.Property(x => x.CompanyId).HasColumnName("CompanyId").HasColumnType("int").IsRequired();
 
-            builder.HasOne(x => x.Company).WithMany(x => x.Users).HasForeignKey(x => x.CompanyId);
+            builder.HasOne(x => x.Truck).WithMany(x => x.Users).HasForeignKey(x => x.TruckId);
+            builder.HasOne(x => x.Company).WithMany(x => x.Users).HasForeignKey(x => x.CompanyId);            
         }
     }
 }

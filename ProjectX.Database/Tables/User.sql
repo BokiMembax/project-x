@@ -23,9 +23,11 @@
     [IdentityCardSerialNumber]           NVARCHAR (255)          NULL,
     [IdentityCardIssueDate]              DATETIME                NULL,
     [IdentityCardExpiryDate]             DATETIME                NULL,
-    [CompanyId]                          INT                     NOT NULL
+    [CompanyId]                          INT                     NOT NULL,
+    [TruckId]                            INT                     NULL
     CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Company_User] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([Id]),
+    CONSTRAINT [FK_Truck_User] FOREIGN KEY ([TruckId]) REFERENCES [dbo].[Truck] ([Id]),
     CONSTRAINT [UNIQUE_Embg] UNIQUE (Embg),
     CONSTRAINT [UNIQUE_UserEmail] UNIQUE (Email),
     CONSTRAINT [UNIQUE_UserPhoneNumber] UNIQUE (PhoneNumber),

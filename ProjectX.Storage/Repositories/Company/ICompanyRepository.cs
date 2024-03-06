@@ -1,6 +1,4 @@
-﻿using ProjectX.Common.Company;
-
-namespace ProjectX.Storage.Repositories.Company
+﻿namespace ProjectX.Storage.Repositories.Company
 {
     public interface ICompanyRepository
     {

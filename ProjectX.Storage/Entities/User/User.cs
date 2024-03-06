@@ -1,5 +1,4 @@
 ﻿using ProjectX.Storage.Entities.Common;
-using System;
 
 namespace ProjectX.Storage.Entities.User
 {
@@ -42,6 +41,10 @@ namespace ProjectX.Storage.Entities.User
         public DateTime? IdentityCardIssueDate { get; set; }
 
         public DateTime? IdentityCardExpiryDate { get; set; }
+
+        public int? TruckId { get; set; }
+
+        public virtual Truck.Truck Truck { get; set; } = null!;
 
         public int CompanyId { get; set; }
 

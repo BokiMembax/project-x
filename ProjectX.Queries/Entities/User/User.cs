@@ -42,6 +42,10 @@ namespace ProjectX.Queries.Entities.User
 
         public DateTime? IdentityCardExpiryDate { get; set; }
 
+        public int? TruckId { get; set; }
+
+        public virtual Truck.Truck Truck { get; set; } = null!;
+
         public int CompanyId { get; set; }
 
         public virtual Company.Company Company { get; set; } = null!;
