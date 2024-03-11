@@ -62,6 +62,16 @@
     <Build Include="Tables\Company.sql" />
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\Truck.sql" />
+    <Build Include="Tables\TruckGreenClassCertificate.sql" />
+    <Build Include="Tables\EmissionClass.sql" />
+    <Build Include="Tables\TruckCemtCertificate.sql" />
+    <Build Include="Tables\TruckCmrCertificate.sql" />
+    <Build Include="Tables\TruckGreenCardCertificate.sql" />
+    <Build Include="Tables\Tachograph.sql" />
+    <Build Include="Tables\Trailer.sql" />
+    <Build Include="Tables\TrailerCemtCertificate.sql" />
+    <Build Include="Tables\TrailerGreenCardCertificate.sql" />
+    <Build Include="Tables\TrailerYellowCertificate.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ProjectX.Database.publish.xml" />

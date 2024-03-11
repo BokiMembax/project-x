@@ -31,6 +31,7 @@
     CONSTRAINT [UNIQUE_Embg] UNIQUE (Embg),
     CONSTRAINT [UNIQUE_UserEmail] UNIQUE (Email),
     CONSTRAINT [UNIQUE_UserPhoneNumber] UNIQUE (PhoneNumber),
+    CONSTRAINT [UNIQUE_DriversCertificateSerialNumber] UNIQUE (DriversCertificateSerialNumber),
     CONSTRAINT [UNIQUE_DrivingLicenseSerialNumber] UNIQUE (DrivingLicenseSerialNumber),
     CONSTRAINT [UNIQUE_PassportSerialNumber] UNIQUE (PassportSerialNumber),
     CONSTRAINT [UNIQUE_IdentityCardSerialNumber] UNIQUE (IdentityCardSerialNumber),

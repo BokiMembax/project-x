@@ -1,6 +1,6 @@
 ﻿namespace ProjectX.Common.User
 {
-    public class UserDto
+    public class UserResponseDto
     {
         public string Embg { get; set; } = string.Empty;
 
