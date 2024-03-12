@@ -1,7 +1,7 @@
-﻿namespace ProjectX.Commands.Trailer
-{
-    public class AddTrailerCommand
-    {
+﻿//namespace ProjectX.Commands.Trailer
+//{
+//    public class AddTrailerCommand
+//    {
 
-    }
-}
+//    }
+//}

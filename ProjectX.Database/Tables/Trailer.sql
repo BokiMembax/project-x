@@ -8,8 +8,10 @@
     [ManufacturedOn]                     DATETIME                NOT NULL,
     [Registration]                       NVARCHAR (255)          NULL,
     [RegistrationExpiryDate]             DATETIME                NULL,
+    [CompanyId]                          INT                     NOT NULL,
     [TruckId]                            INT                     NULL,
     CONSTRAINT [PK_Trailer] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Company_Trailer] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([Id]),
     CONSTRAINT [FK_Truck_Trailer] FOREIGN KEY ([TruckId]) REFERENCES [dbo].[Truck] ([Id]),
     CONSTRAINT [UNIQUE_TrailerVin] UNIQUE (Vin),
     CONSTRAINT [UNIQUE_TrailerRegistration] UNIQUE (Registration)

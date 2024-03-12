@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProjectX.Storage.Entities.Trailer;
+using ProjectX.Queries.Entities.Trailer;
 
-namespace ProjectX.Storage.Database.Configuration
+namespace ProjectX.Queries.Database.Configuration
 {
     public class TrailerConfiguration : IEntityTypeConfiguration<Trailer>
     {

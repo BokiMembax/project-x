@@ -40,62 +40,62 @@ namespace ProjectX.Storage.Entities.User
         public DateTime? DateOfEmployment { get; set; }
 
         /// <summary>
-        /// 
+        /// Drivers Certificate Serial Number
         /// </summary>
-        public string DriversCertificateSerialNumber { get; set; } = string.Empty;        
+        public string DriversCertificateSerialNumber { get; set; } = string.Empty;
 
         /// <summary>
-        /// 
+        /// Drivers Certificate Issue Date
         /// </summary>
         public DateTime? DriversCertificateIssueDate { get; set; }
 
         /// <summary>
-        /// 
+        /// Drivers Certificate Expiry Date
         /// </summary>
         public DateTime? DriversCertificateExpiryDate { get; set; }
 
         /// <summary>
-        /// 
+        /// Driving License Serial Number
         /// </summary>
         public string DrivingLicenseSerialNumber { get; set; } = string.Empty;
 
         /// <summary>
-        /// 
+        /// Driving License Issue Date
         /// </summary>
         public DateTime? DrivingLicenseIssueDate { get; set; }
 
         /// <summary>
-        /// 
+        /// Driving License Expiry Date
         /// </summary>
         public DateTime? DrivingLicenseExpiryDate { get; set; }
 
         /// <summary>
-        /// 
+        /// Passport Serial Number
         /// </summary>
         public string PassportSerialNumber { get; set; } = string.Empty;
 
         /// <summary>
-        /// 
+        /// Passport Issue Date
         /// </summary>
         public DateTime? PassportIssueDate { get; set; }
 
         /// <summary>
-        /// 
+        /// Passport Expiry Date
         /// </summary>
         public DateTime? PassportExpiryDate { get; set; }
 
         /// <summary>
-        /// 
+        /// Identity Card Serial Number
         /// </summary>
         public string IdentityCardSerialNumber { get; set; } = string.Empty;
 
         /// <summary>
-        /// 
+        /// Identity Card Issue Date
         /// </summary>
         public DateTime? IdentityCardIssueDate { get; set; }
 
         /// <summary>
-        /// 
+        /// Identity Card Expiry Date
         /// </summary>
         public DateTime? IdentityCardExpiryDate { get; set; }
 

@@ -22,15 +22,21 @@ namespace ProjectX.Api.Controllers
         }
 
         [HttpGet("{truckUid}")]
-        public async Task<Queries.Contracts.Responses.Truck.TruckDto> GetUser([FromRoute] Guid truckUid)
+        public async Task<Queries.Contracts.Responses.Truck.TruckDto> GetTruck([FromRoute] Guid companyUid, [FromRoute] Guid truckUid)
         {
-            return await _sender.Send(new GetTruckQuery(truckUid));
+            return await _sender.Send(new GetTruckQuery(companyUid, truckUid));
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<Queries.Contracts.Responses.Truck.TruckDto>> GetTrucks([FromRoute] Guid companyUid)
+        {
+            return await _sender.Send(new GetTrucksQuery(companyUid));
         }
 
         [HttpPost]
-        public async Task AddTruck([FromBody] InsertTruckRequest truckRequest)
+        public async Task AddTruck([FromRoute] Guid companyUid, [FromBody] InsertTruckRequest truckRequest)
         {
-            await _sender.Send(new AddTruckCommand(truckRequest));
+            await _sender.Send(new AddTruckCommand(companyUid, truckRequest));
         }
     }
 }

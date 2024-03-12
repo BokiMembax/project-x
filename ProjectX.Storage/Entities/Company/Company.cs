@@ -30,8 +30,18 @@ namespace ProjectX.Storage.Entities.Company
         public string PhoneNumber { get; set; } = string.Empty;
 
         /// <summary>
-        /// List of employees
+        /// List of users
         /// </summary>
         public virtual ICollection<User.User> Users { get; set; } = new List<User.User>();
+
+        /// <summary>
+        /// List of trucks
+        /// </summary>
+        public virtual ICollection<Truck.Truck> Trucks { get; set; } = new List<Truck.Truck>();
+
+        /// <summary>
+        /// List of trailers
+        /// </summary>
+        public virtual ICollection<Trailer.Trailer> Trailers { get; set; } = new List<Trailer.Trailer>();
     }
 }

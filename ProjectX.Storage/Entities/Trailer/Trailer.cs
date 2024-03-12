@@ -28,11 +28,18 @@ namespace ProjectX.Storage.Entities.Trailer
         public DateTime? RegistrationExpiryDate { get; set; }
 
         /// <summary>
+        /// Company FK
+        /// </summary>
+        public int CompanyId { get; set; }
+
+        /// <summary>
         /// Truck FK
         /// </summary>
-        public int? TruckId { get; set; }
+        public int? TruckId { get; set; }      
 
-        public virtual Truck.Truck? Truck { get; set; }
+        public virtual Company.Company Company { get; set; } = null!;
+
+        public virtual Truck.Truck? Truck { get; set; }        
 
         /// <summary>
         /// List of CEMT Certificates
@@ -49,5 +56,9 @@ namespace ProjectX.Storage.Entities.Trailer
         /// </summary>
         public virtual ICollection<TrailerYellowCertificate> YellowCertificates { get; set; } = new List<TrailerYellowCertificate>();
 
+        /// <summary>
+        /// List of users
+        /// </summary>
+        public virtual ICollection<User.User> Users { get; set; } = new List<User.User>();
     }
 }

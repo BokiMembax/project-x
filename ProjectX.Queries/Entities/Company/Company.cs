@@ -15,5 +15,9 @@ namespace ProjectX.Queries.Entities.Company
         public string PhoneNumber { get; set; } = string.Empty;
 
         public virtual ICollection<User.User> Users { get; set; } = new List<User.User>();
+
+        public virtual ICollection<Truck.Truck> Trucks { get; set; } = new List<Truck.Truck>();
+
+        public virtual ICollection<Trailer.Trailer> Trailers { get; set; } = new List<Trailer.Trailer>();
     }
 }

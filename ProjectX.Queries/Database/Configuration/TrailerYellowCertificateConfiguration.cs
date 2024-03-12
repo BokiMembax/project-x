@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProjectX.Storage.Entities.YellowCertificate;
+using ProjectX.Queries.Entities.YellowCertificate;
 
-namespace ProjectX.Storage.Database.Configuration
+namespace ProjectX.Queries.Database.Configuration
 {
     public class TrailerYellowCertificateConfiguration : IEntityTypeConfiguration<TrailerYellowCertificate>
     {

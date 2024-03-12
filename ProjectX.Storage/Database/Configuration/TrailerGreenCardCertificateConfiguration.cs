@@ -21,6 +21,8 @@ namespace ProjectX.Storage.Database.Configuration
             builder.Property(x => x.ExpiryDate).HasColumnName("ExpiryDate").HasColumnType("datetime2").IsRequired();
             builder.Property(x => x.IsExpired).HasColumnName("IsExpired").IsRequired();
 
+            builder.Property(x => x.TrailerId).HasColumnName("TrailerId").HasColumnType("int").IsRequired();
+
             builder.HasOne(x => x.Trailer).WithMany(x => x.GreenCardCertificates).HasForeignKey(x => x.TrailerId);
         }
     }

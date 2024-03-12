@@ -44,10 +44,14 @@ namespace ProjectX.Queries.Entities.User
 
         public int? TruckId { get; set; }
 
-        public virtual Truck.Truck Truck { get; set; } = null!;
+        public int? TrailerId { get; set; }
 
         public int CompanyId { get; set; }
 
-        public virtual Company.Company Company { get; set; } = null!;
+        public virtual Truck.Truck? Truck { get; set; }
+
+        public virtual Trailer.Trailer? Trailer { get; set; }
+
+        public virtual Company.Company Company { get; set; } = null!;     
     }
 }

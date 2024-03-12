@@ -24,6 +24,15 @@ namespace ProjectX.Queries.Database.Configuration
             builder.Property(x => x.Registration).HasColumnName("Registration").HasMaxLength(255).IsRequired();
             builder.Property(x => x.RegistrationExpiryDate).HasColumnName("RegistrationExpiryDate").HasColumnType("datetime2");
 
+            builder.Property(x => x.CompanyId).HasColumnName("CompanyId").HasColumnType("int").IsRequired();
+            builder.Property(x => x.GreenClassCertificateId).HasColumnName("GreenClassCertificateId").HasColumnType("int");
+
+            builder.HasOne(x => x.Company).WithMany(x => x.Trucks).HasForeignKey(x => x.CompanyId);
+            builder.HasOne(x => x.GreenClassCertificate).WithOne().HasForeignKey<Truck>(x => x.GreenClassCertificateId);
+            builder.HasMany(x => x.CemtCertificates).WithOne(x => x.Truck).HasForeignKey(x => x.TruckId);
+            builder.HasMany(x => x.CmrCertificates).WithOne(x => x.Truck).HasForeignKey(x => x.TruckId);
+            builder.HasMany(x => x.Tachographs).WithOne(x => x.Truck).HasForeignKey(x => x.TruckId);
+            builder.HasMany(x => x.GreenCardCertificates).WithOne(x => x.Truck).HasForeignKey(x => x.TruckId);
             builder.HasMany(x => x.Users).WithOne(x => x.Truck).HasForeignKey(x => x.TruckId);
         }
     }

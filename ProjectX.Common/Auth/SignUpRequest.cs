@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ProjectX.Common.Auth
+﻿namespace ProjectX.Common.Auth
 {
     public class SignUpRequest
     {
@@ -26,30 +24,30 @@ namespace ProjectX.Common.Auth
 
         public string UserPhoneNumber { get; set; } = string.Empty;
 
-        public DateTime? DateOfEmployment { get; set; }
+        //public DateTime? DateOfEmployment { get; set; }
 
-        public string DriversCertificateSerialNumber { get; set; } = string.Empty;
+        //public string DriversCertificateSerialNumber { get; set; } = string.Empty;
 
-        public DateTime? DriversCertificateIssueDate { get; set; }
+        //public DateTime? DriversCertificateIssueDate { get; set; }
 
-        public DateTime? DriversCertificateExpiryDate { get; set; }
+        //public DateTime? DriversCertificateExpiryDate { get; set; }
 
-        public string DrivingLicenseSerialNumber { get; set; } = string.Empty;
+        //public string DrivingLicenseSerialNumber { get; set; } = string.Empty;
 
-        public DateTime? DrivingLicenseIssueDate { get; set; }
+        //public DateTime? DrivingLicenseIssueDate { get; set; }
 
-        public DateTime? DrivingLicenseExpiryDate { get; set; }
+        //public DateTime? DrivingLicenseExpiryDate { get; set; }
 
-        public string PassportSerialNumber { get; set; } = string.Empty;
+        //public string PassportSerialNumber { get; set; } = string.Empty;
 
-        public DateTime? PassportIssueDate { get; set; }
+        //public DateTime? PassportIssueDate { get; set; }
 
-        public DateTime? PassportExpiryDate { get; set; }
+        //public DateTime? PassportExpiryDate { get; set; }
 
-        public string IdentityCardSerialNumber { get; set; } = string.Empty;
+        //public string IdentityCardSerialNumber { get; set; } = string.Empty;
 
-        public DateTime? IdentityCardIssueDate { get; set; }
+        //public DateTime? IdentityCardIssueDate { get; set; }
 
-        public DateTime? IdentityCardExpiryDate { get; set; }
+        //public DateTime? IdentityCardExpiryDate { get; set; }
     }
 }

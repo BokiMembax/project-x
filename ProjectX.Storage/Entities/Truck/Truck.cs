@@ -33,9 +33,16 @@ namespace ProjectX.Storage.Entities.Truck
         public DateTime? RegistrationExpiryDate { get; set; }
 
         /// <summary>
+        /// Company FK
+        /// </summary>
+        public int CompanyId { get; set; }
+
+        /// <summary>
         /// Green Class Certificate FK
         /// </summary>
-        public int? GreenClassCertificateId { get; set; }
+        public int? GreenClassCertificateId { get; set; }        
+
+        public virtual Company.Company Company { get; set; } = null!;
 
         public virtual GreenClassCertificate.TruckGreenClassCertificate? GreenClassCertificate { get; set; }
 

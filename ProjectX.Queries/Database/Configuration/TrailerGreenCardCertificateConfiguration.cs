@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProjectX.Storage.Entities.YellowCertificate;
+using ProjectX.Queries.Entities.GreenCardCertificate;
 
-namespace ProjectX.Storage.Database.Configuration
+namespace ProjectX.Queries.Database.Configuration
 {
-    public class TrailerYellowCertificateConfiguration : IEntityTypeConfiguration<TrailerYellowCertificate>
+    public class TrailerGreenCardCertificateConfiguration : IEntityTypeConfiguration<TrailerGreenCardCertificate>
     {
-        public void Configure(EntityTypeBuilder<TrailerYellowCertificate> builder)
+        public void Configure(EntityTypeBuilder<TrailerGreenCardCertificate> builder)
         {
-            builder.ToTable("TrailerYellowCertificate", "dbo");
+            builder.ToTable("TrailerGreenCardCertificate", "dbo");
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
@@ -23,7 +23,7 @@ namespace ProjectX.Storage.Database.Configuration
 
             builder.Property(x => x.TrailerId).HasColumnName("TrailerId").HasColumnType("int").IsRequired();
 
-            builder.HasOne(x => x.Trailer).WithMany(x => x.YellowCertificates).HasForeignKey(x => x.TrailerId);
+            builder.HasOne(x => x.Trailer).WithMany(x => x.GreenCardCertificates).HasForeignKey(x => x.TrailerId);
         }
     }
 }
