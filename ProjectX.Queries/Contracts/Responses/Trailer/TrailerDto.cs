@@ -1,9 +1,7 @@
-﻿namespace ProjectX.Common.Truck
+﻿namespace ProjectX.Queries.Contracts.Responses.Trailer
 {
-    public class InsertTruckRequest
+    public class TrailerDto
     {
-        public string CombinationNumber { get; set; } = string.Empty;
-
         public string Vin { get; set; } = string.Empty;
 
         public DateTime ManufacturedOn { get; set; }

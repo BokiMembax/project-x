@@ -1,9 +1,7 @@
-﻿namespace ProjectX.Common.Truck
+﻿namespace ProjectX.Common.Trailer
 {
-    public class InsertTruckRequest
+    public class InsertTrailerRequest
     {
-        public string CombinationNumber { get; set; } = string.Empty;
-
         public string Vin { get; set; } = string.Empty;
 
         public DateTime ManufacturedOn { get; set; }
