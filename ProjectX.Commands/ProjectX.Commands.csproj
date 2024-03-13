@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="TrailerCertificates\" />
-    <Folder Include="TruckCertificates\" />
   </ItemGroup>
 
 </Project>
