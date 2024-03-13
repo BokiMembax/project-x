@@ -16,8 +16,4 @@
     <ProjectReference Include="..\ProjectX.Storage\ProjectX.Storage.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="TrailerCertificates\" />
-  </ItemGroup>
-
 </Project>

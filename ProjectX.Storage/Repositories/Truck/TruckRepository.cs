@@ -16,7 +16,7 @@ namespace ProjectX.Storage.Repositories.Truck
 
             if (dbTruck == null)
             {
-                throw new Exception($"Truck with companyUid {truckUid} not found.");
+                throw new Exception($"Truck with Uid {truckUid} not found.");
             }
 
             return dbTruck;

@@ -16,7 +16,7 @@ namespace ProjectX.Storage.Repositories.Company
 
             if (dbCompany == null)
             {
-                throw new Exception($"Company with companyUid {companyUid} not found.");
+                throw new Exception($"Company with Uid {companyUid} not found.");
             }
 
             return dbCompany;

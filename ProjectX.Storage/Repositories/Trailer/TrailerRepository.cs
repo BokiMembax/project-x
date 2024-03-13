@@ -10,6 +10,18 @@ namespace ProjectX.Storage.Repositories.Trailer
 
         }
 
+        public async Task<Entities.Trailer.Trailer> GetTrailerByUidAsync(Guid trailerUid)
+        {
+            var dbTrailer = await All<Entities.Trailer.Trailer>().SingleOrDefaultAsync(x => x.Uid == trailerUid);
+
+            if (dbTrailer == null)
+            {
+                throw new Exception($"Trailer with Uid {trailerUid} not found.");
+            }
+
+            return dbTrailer;
+        }
+
         public async Task<bool> DoesTrailerExistAsync(string vin)
         {
             return await All<Entities.Trailer.Trailer>().AnyAsync(x => x.Vin == vin);
