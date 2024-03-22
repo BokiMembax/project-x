@@ -5,19 +5,21 @@ using ProjectX.Storage.UnitOfWork;
 
 namespace ProjectX.Commands.TruckCertificates
 {
-    public record AddTruckCemtCertificateCommand : IRequest<string>
+    public record AddTruckCemtCertificateCommand : IRequest
     {
+        public Guid CompanyUid { get; set; }
         public Guid TruckUid { get; set; }
         public InsertTruckCemtCertificateRequest Request { get; set; }
 
-        public AddTruckCemtCertificateCommand(Guid truckUid, InsertTruckCemtCertificateRequest request)
+        public AddTruckCemtCertificateCommand(Guid companyUid, Guid truckUid, InsertTruckCemtCertificateRequest request)
         {
+            CompanyUid = companyUid;
             TruckUid = truckUid;
             Request = request;
         }
     }
 
-    public record AddTruckCemtCertificateCommandHandler : IRequestHandler<AddTruckCemtCertificateCommand, string>
+    public record AddTruckCemtCertificateCommandHandler : IRequestHandler<AddTruckCemtCertificateCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ITruckRepository _truckRepository;
@@ -28,23 +30,22 @@ namespace ProjectX.Commands.TruckCertificates
             _truckRepository = truckRepository;
         }
 
-        public async Task<string> Handle(AddTruckCemtCertificateCommand command, CancellationToken cancellationToken)
+        public async Task Handle(AddTruckCemtCertificateCommand command, CancellationToken cancellationToken)
         {
-            var dbTruck = await _truckRepository.GetTruckByUidAsync(command.TruckUid);
+            var dbTruck = await _truckRepository.GetTruckByUidAsync(command.CompanyUid, command.TruckUid);
 
             var newTruckCemtCertificate = new Storage.Entities.CemtCertificate.TruckCemtCertificate
             {
-                CreatedOn = DateTime.UtcNow,
                 Uid = Guid.NewGuid(),
+                CreatedOn = DateTime.UtcNow,                
                 ExpiryDate = command.Request.ExpiryDate,
-                IsExpired = command.Request.IsExpired
+                IsExpired = command.Request.IsExpired,
+                Truck = dbTruck
             };
 
             dbTruck.CemtCertificates.Add(newTruckCemtCertificate);
 
             await _unitOfWork.SaveChangesAsync();
-
-            return "CEMT Certificate added.";
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using ProjectX.Common.EmissionClass;
-
-namespace ProjectX.Common.GreenClassCertificate
+﻿namespace ProjectX.Common.GreenClassCertificate
 {
     public class InsertTruckGreenClassCertificateRequest
     {
@@ -8,6 +6,8 @@ namespace ProjectX.Common.GreenClassCertificate
 
         public bool IsExpired { get; set; }
 
-        public InsertEmissionClassRequest EmissionClass { get; set; } = null!;
+        public string EmissionClassName { get; set; } = string.Empty;
+
+        public string EmissionClassDescription { get; set; } = string.Empty;    
     }
 }

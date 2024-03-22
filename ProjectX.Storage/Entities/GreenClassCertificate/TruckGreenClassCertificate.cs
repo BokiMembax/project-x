@@ -15,11 +15,14 @@ namespace ProjectX.Storage.Entities.GreenClassCertificate
         public bool IsExpired { get; set; }
 
         /// <summary>
-        /// EmissionClass FK
+        /// Emission class name
         /// </summary>
-        public int EmissionClassId { get; set; }
+        public string EmissionClassName {  get; set; } = string.Empty;
 
-        public virtual EmissionClass.EmissionClass EmissionClass { get; set; } = null!;
+        /// <summary>
+        /// Emission class description
+        /// </summary>
+        public string EmissionClassDescription { get; set; } = string.Empty;
     }
 }
 

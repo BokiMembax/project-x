@@ -16,13 +16,5 @@ namespace ProjectX.Common.Truck
         public string Registration { get; set; } = string.Empty;
 
         public DateTime? RegistrationExpiryDate { get; set; }
-
-        public ICollection<CemtCertificateResponseDto> CemtCertificates { get; set; } = new List<CemtCertificateResponseDto>();
-
-        public ICollection<CmrCertificateResponseDto> CmrCertificates { get; set; } = new List<CmrCertificateResponseDto>();
-
-        public ICollection<TachographResponseDto> Tachographs { get; set; } = new List<TachographResponseDto>();
-
-        public ICollection<GreenCardCertificateResponseDto> GreenCardCertificates { get; set; } = new List<GreenCardCertificateResponseDto>();
     }
 }

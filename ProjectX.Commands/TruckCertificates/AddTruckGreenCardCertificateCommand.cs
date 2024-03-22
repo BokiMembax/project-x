@@ -5,19 +5,21 @@ using ProjectX.Storage.UnitOfWork;
 
 namespace ProjectX.Commands.TruckCertificates
 {
-    public record AddTruckGreenCardCertificateCommand : IRequest<string>
+    public record AddTruckGreenCardCertificateCommand : IRequest
     {
+        public Guid CompanyUid { get; set; }
         public Guid TruckUid { get; set; }
         public InsertTruckGreenCardCertificateRequest Request { get; set; }
 
-        public AddTruckGreenCardCertificateCommand(Guid truckUid, InsertTruckGreenCardCertificateRequest request)
+        public AddTruckGreenCardCertificateCommand(Guid companyUid, Guid truckUid, InsertTruckGreenCardCertificateRequest request)
         {
+            CompanyUid = companyUid;
             TruckUid = truckUid;
             Request = request;
         }
     }
 
-    public record AddTruckGreenCardCertificateCommandHandler : IRequestHandler<AddTruckGreenCardCertificateCommand, string>
+    public record AddTruckGreenCardCertificateCommandHandler : IRequestHandler<AddTruckGreenCardCertificateCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ITruckRepository _truckRepository;
@@ -28,23 +30,22 @@ namespace ProjectX.Commands.TruckCertificates
             _truckRepository = truckRepository;
         }
 
-        public async Task<string> Handle(AddTruckGreenCardCertificateCommand command, CancellationToken cancellationToken)
+        public async Task Handle(AddTruckGreenCardCertificateCommand command, CancellationToken cancellationToken)
         {
-            var dbTruck = await _truckRepository.GetTruckByUidAsync(command.TruckUid);
+            var dbTruck = await _truckRepository.GetTruckByUidAsync(command.CompanyUid, command.TruckUid);
 
             var newTruckGreenCardCertificate = new Storage.Entities.GreenCardCertificate.TruckGreenCardCertificate
             {
-                CreatedOn = DateTime.UtcNow,
                 Uid = Guid.NewGuid(),
+                CreatedOn = DateTime.UtcNow,
                 ExpiryDate = command.Request.ExpiryDate,
-                IsExpired = command.Request.IsExpired
+                IsExpired = command.Request.IsExpired,
+                Truck = dbTruck
             };
 
             dbTruck.GreenCardCertificates.Add(newTruckGreenCardCertificate);
 
             await _unitOfWork.SaveChangesAsync();
-
-            return "Green Card Certificate added.";
         }
     }
 }

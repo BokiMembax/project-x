@@ -28,7 +28,7 @@ namespace ProjectX.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Queries.Contracts.Responses.Trailer.TrailerDto>> GetTrailers ([FromRoute] Guid companyUid)
+        public async Task<IReadOnlyList<Queries.Contracts.Responses.Trailer.TrailerDto>> GetTrailers ([FromRoute] Guid companyUid)
         {
             return await _sender.Send(new GetTrailersQuery(companyUid));
         }

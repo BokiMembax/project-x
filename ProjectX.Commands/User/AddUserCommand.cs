@@ -6,7 +6,7 @@ using ProjectX.Storage.UnitOfWork;
 
 namespace ProjectX.Commands.User
 {
-    public record AddUserCommand : IRequest<string>
+    public record AddUserCommand : IRequest
     {
         public Guid CompanyUid { get; set; }
         public InsertUserRequest UserRequest { get; set; }      
@@ -18,7 +18,7 @@ namespace ProjectX.Commands.User
         }
     }
 
-    public record AddUserCommandHandler : IRequestHandler<AddUserCommand, string>
+    public record AddUserCommandHandler : IRequestHandler<AddUserCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICompanyRepository _companyRepository;
@@ -31,7 +31,7 @@ namespace ProjectX.Commands.User
             _userRepository = userRepository;
         }
 
-        public async Task<string> Handle(AddUserCommand command, CancellationToken cancellationToken)
+        public async Task Handle(AddUserCommand command, CancellationToken cancellationToken)
         {
             var dbCompany = await _companyRepository.GetCompanyByUidAsync(command.CompanyUid);
 
@@ -56,11 +56,7 @@ namespace ProjectX.Commands.User
 
             dbCompany.Users.Add(newUser);
 
-            await _userRepository.InsertUserAsync(newUser);
-
             await _unitOfWork.SaveChangesAsync();
-
-            return "User added.";
         }
     }
 }

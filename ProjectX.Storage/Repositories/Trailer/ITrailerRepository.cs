@@ -5,7 +5,7 @@
         /// <summary>
         /// Return the trailer with this Uid from the database
         /// </summary>
-        Task<Entities.Trailer.Trailer> GetTrailerByUidAsync(Guid trailerUid);
+        Task<Entities.Trailer.Trailer> GetTrailerByUidAsync(Guid companyUid, Guid trailerUid);
 
         /// <summary>
         /// Check if a trailer with this VIN exists in the database

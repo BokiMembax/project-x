@@ -21,9 +21,8 @@ namespace ProjectX.Queries.Database.Configuration
             builder.Property(x => x.ExpiryDate).HasColumnName("ExpiryDate").HasColumnType("datetime2").IsRequired();
             builder.Property(x => x.IsExpired).HasColumnName("IsExpired").IsRequired();
 
-            builder.Property(x => x.EmissionClassId).HasColumnName("EmissionClassId").HasColumnType("int");
-
-            builder.HasOne(x => x.EmissionClass).WithOne().HasForeignKey<TruckGreenClassCertificate>(x => x.EmissionClassId);
+            builder.Property(x => x.EmissionClassName).HasColumnName("EmissionClassName").HasMaxLength(255).IsRequired();
+            builder.Property(x => x.EmissionClassDescription).HasColumnName("EmissionClassDescription").HasMaxLength(255).IsRequired();
         }
     }
 }

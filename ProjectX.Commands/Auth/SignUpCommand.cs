@@ -6,7 +6,7 @@ using ProjectX.Storage.UnitOfWork;
 
 namespace ProjectX.Commands.Auth
 {
-    public class SignUpCommand : IRequest<string>
+    public class SignUpCommand : IRequest
     {
         public SignUpRequest AccountRequest { get; set; }
 
@@ -16,7 +16,7 @@ namespace ProjectX.Commands.Auth
         }
     }
 
-    public class SignUpCommandHandler : IRequestHandler<SignUpCommand, string>
+    public class SignUpCommandHandler : IRequestHandler<SignUpCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICompanyRepository _companyRepository;
@@ -29,7 +29,7 @@ namespace ProjectX.Commands.Auth
             _userRepository = userRepository;
         }
 
-        public async Task<string> Handle(SignUpCommand command, CancellationToken cancellationToken)
+        public async Task Handle(SignUpCommand command, CancellationToken cancellationToken)
         {
             var companyExists = await _companyRepository.DoesCompanyExistAsync(command.AccountRequest.Embs, command.AccountRequest.CompanyEmail);
 
@@ -66,19 +66,6 @@ namespace ProjectX.Commands.Auth
                 Email = command.AccountRequest.UserEmail,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(command.AccountRequest.Password),
                 PhoneNumber = command.AccountRequest.UserPhoneNumber,
-                //DateOfEmployment = command.AccountRequest.DateOfEmployment,
-                //DriversCertificateSerialNumber = command.AccountRequest.DriversCertificateSerialNumber,
-                //DriversCertificateIssueDate = command.AccountRequest.DriversCertificateIssueDate,
-                //DriversCertificateExpiryDate = command.AccountRequest.DriversCertificateExpiryDate,
-                //DrivingLicenseSerialNumber = command.AccountRequest.DrivingLicenseSerialNumber,
-                //DrivingLicenseIssueDate = command.AccountRequest.DrivingLicenseIssueDate,
-                //DrivingLicenseExpiryDate = command.AccountRequest.DrivingLicenseExpiryDate,
-                //PassportSerialNumber = command.AccountRequest.PassportSerialNumber,
-                //PassportIssueDate = command.AccountRequest.PassportIssueDate,
-                //PassportExpiryDate = command.AccountRequest.PassportExpiryDate,
-                //IdentityCardSerialNumber = command.AccountRequest.IdentityCardSerialNumber,
-                //IdentityCardIssueDate = command.AccountRequest.IdentityCardIssueDate,
-                //IdentityCardExpiryDate = command.AccountRequest.IdentityCardExpiryDate,
                 Company = newCompany
             };
 
@@ -87,8 +74,6 @@ namespace ProjectX.Commands.Auth
             await _companyRepository.InsertCompanyAsync(newCompany);
 
             await _unitOfWork.SaveChangesAsync();
-
-            return "Account added.";
         }
     }
 }

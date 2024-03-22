@@ -5,7 +5,7 @@
         /// <summary>
         /// Return the truck with this Uid from the database
         /// </summary>
-        Task<Entities.Truck.Truck> GetTruckByUidAsync(Guid truckUid);
+        Task<Entities.Truck.Truck> GetTruckByUidAsync(Guid companyUid, Guid truckUid);
 
         /// <summary>
         /// Check if a truck with this VIN exists in the database

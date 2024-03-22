@@ -10,16 +10,19 @@ namespace ProjectX.Storage.Repositories.Truck
 
         }
 
-        public async Task<Entities.Truck.Truck> GetTruckByUidAsync(Guid truckUid)
+        public async Task<Entities.Truck.Truck> GetTruckByUidAsync(Guid companyUid, Guid truckUid)
         {
-            var dbTruck = await All<Entities.Truck.Truck>().SingleOrDefaultAsync(x => x.Uid == truckUid);
+            var truck = await (from dbCompany in _projectXContext.Set<Entities.Company.Company>().Where(x => x.Uid == companyUid)
+                                  join dbTruck in _projectXContext.Set<Entities.Truck.Truck>().Where(x => x.Uid == truckUid)
+                                       on dbCompany.Id equals dbTruck.CompanyId
+                                  select dbTruck).SingleOrDefaultAsync();
 
-            if (dbTruck == null)
+            if (truck == null)
             {
                 throw new Exception($"Truck with Uid {truckUid} not found.");
             }
 
-            return dbTruck;
+            return truck;
         }
 
         public async Task<bool> DoesTruckExistAsync(string vin)

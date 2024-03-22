@@ -5,19 +5,21 @@ using ProjectX.Storage.UnitOfWork;
 
 namespace ProjectX.Commands.TrailerCertificates
 {
-    public record AddTrailerCemtCertificateCommand : IRequest<string>
+    public record AddTrailerCemtCertificateCommand : IRequest
     {
+        public Guid CompanyUid { get; set; }
         public Guid TrailerUid { get; set; }
         public InsertTrailerCemtCertificateRequest Request { get; set; }
 
-        public AddTrailerCemtCertificateCommand(Guid trailerUid, InsertTrailerCemtCertificateRequest request)
+        public AddTrailerCemtCertificateCommand(Guid companyUid, Guid trailerUid, InsertTrailerCemtCertificateRequest request)
         {
+            CompanyUid = companyUid;
             TrailerUid = trailerUid;
             Request = request;
         }
     }
 
-    public record AddTrailerCemtCertificateCommandHandler : IRequestHandler<AddTrailerCemtCertificateCommand, string>
+    public record AddTrailerCemtCertificateCommandHandler : IRequestHandler<AddTrailerCemtCertificateCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ITrailerRepository _trailerRepository;
@@ -28,14 +30,14 @@ namespace ProjectX.Commands.TrailerCertificates
             _trailerRepository = trailerRepository;
         }
 
-        public async Task<string> Handle(AddTrailerCemtCertificateCommand command, CancellationToken cancellationToken)
+        public async Task Handle(AddTrailerCemtCertificateCommand command, CancellationToken cancellationToken)
         {
-            var dbTrailer = await _trailerRepository.GetTrailerByUidAsync(command.TrailerUid);
+            var dbTrailer = await _trailerRepository.GetTrailerByUidAsync(command.CompanyUid, command.TrailerUid);
 
             var newTrailerCemtCertificate = new Storage.Entities.CemtCertificate.TrailerCemtCertificate
             {
-                CreatedOn = DateTime.UtcNow,
                 Uid = Guid.NewGuid(),
+                CreatedOn = DateTime.UtcNow,                
                 ExpiryDate = command.Request.ExpiryDate,
                 IsExpired = command.Request.IsExpired
             };
@@ -43,8 +45,6 @@ namespace ProjectX.Commands.TrailerCertificates
             dbTrailer.CemtCertificates.Add(newTrailerCemtCertificate);
 
             await _unitOfWork.SaveChangesAsync();
-
-            return "CEMT Certificate added.";
         }
     }
 }

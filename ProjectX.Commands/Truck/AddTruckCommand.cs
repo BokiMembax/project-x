@@ -6,7 +6,7 @@ using ProjectX.Storage.UnitOfWork;
 
 namespace ProjectX.Commands.Truck
 {
-    public record AddTruckCommand : IRequest<string>
+    public record AddTruckCommand : IRequest
     {
         public Guid CompanyUid { get; set; }
         public InsertTruckRequest TruckRequest { get; set; }
@@ -18,7 +18,7 @@ namespace ProjectX.Commands.Truck
         }
     }
 
-    public record AddTruckCommandHandler : IRequestHandler<AddTruckCommand, string>
+    public record AddTruckCommandHandler : IRequestHandler<AddTruckCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICompanyRepository _companyRepository;
@@ -31,7 +31,7 @@ namespace ProjectX.Commands.Truck
             _truckRepository = truckRepository;
         }
 
-        public async Task<string> Handle(AddTruckCommand command, CancellationToken cancellationToken)
+        public async Task Handle(AddTruckCommand command, CancellationToken cancellationToken)
         {
             var dbCompany = await _companyRepository.GetCompanyByUidAsync(command.CompanyUid);
 
@@ -56,11 +56,7 @@ namespace ProjectX.Commands.Truck
 
             dbCompany.Trucks.Add(newTruck);
 
-            await _truckRepository.InsertTruckAsync(newTruck);
-
             await _unitOfWork.SaveChangesAsync();
-
-            return "Truck added.";
         }
     }
 }

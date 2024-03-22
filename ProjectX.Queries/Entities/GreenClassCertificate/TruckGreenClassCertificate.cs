@@ -8,8 +8,8 @@ namespace ProjectX.Queries.Entities.GreenClassCertificate
 
         public bool IsExpired { get; set; }
 
-        public int EmissionClassId { get; set; }
+        public string EmissionClassName { get; set; } = string.Empty;
 
-        public virtual EmissionClass.EmissionClass EmissionClass { get; set; } = null!;
+        public string EmissionClassDescription { get; set; } = string.Empty;
     }
 }

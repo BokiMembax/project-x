@@ -8,7 +8,7 @@ using ProjectX.Common.YellowCertificate;
 namespace ProjectX.Api.Controllers
 {
     [ApiController]
-    [Route("api/companies/{companyUid}/trucks/{trailerUid}/certificates")]
+    [Route("api/companies/{companyUid}/trailers/{trailerUid}/certificates")]
     public class TrailerCertificateController : ControllerBase
     {
         private readonly ILogger<TrailerCertificateController> _logger;
@@ -22,23 +22,23 @@ namespace ProjectX.Api.Controllers
 
         [HttpPost]
         [Route("cemt")]
-        public async Task AddTrailerCemtCertificate([FromRoute] Guid trailerUid, InsertTrailerCemtCertificateRequest request)
+        public async Task AddTrailerCemtCertificate([FromRoute] Guid companyUid, [FromRoute] Guid trailerUid, InsertTrailerCemtCertificateRequest request)
         {
-            await _sender.Send(new AddTrailerCemtCertificateCommand(trailerUid, request));
+            await _sender.Send(new AddTrailerCemtCertificateCommand(companyUid, trailerUid, request));
         }
 
         [HttpPost]
         [Route("greencard")]
-        public async Task AddTrailerGreenCardCertificate([FromRoute] Guid trailerUid, InsertTrailerGreenCardCertificateRequest request)
+        public async Task AddTrailerGreenCardCertificate([FromRoute] Guid companyUid, [FromRoute] Guid trailerUid, InsertTrailerGreenCardCertificateRequest request)
         {
-            await _sender.Send(new AddTrailerGreenCardCertificateCommand(trailerUid, request));
+            await _sender.Send(new AddTrailerGreenCardCertificateCommand(companyUid, trailerUid, request));
         }
 
         [HttpPost]
         [Route("yellow")]
-        public async Task AddTrailerYellowCertificate([FromRoute] Guid trailerUid, InsertTrailerYellowCertificateRequest request)
+        public async Task AddTrailerYellowCertificate([FromRoute] Guid companyUid, [FromRoute] Guid trailerUid, InsertTrailerYellowCertificateRequest request)
         {
-            await _sender.Send(new AddTrailerYellowCertificateCommand(trailerUid, request));
+            await _sender.Send(new AddTrailerYellowCertificateCommand(companyUid, trailerUid, request));
         }
     }
 }

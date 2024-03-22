@@ -5,19 +5,21 @@ using ProjectX.Storage.UnitOfWork;
 
 namespace ProjectX.Commands.TruckCertificates
 {
-    public record AddTachographCommand : IRequest<string>
+    public record AddTachographCommand : IRequest
     {
+        public Guid CompanyUid { get; set; }
         public Guid TruckUid { get; set; }
         public InsertTachographRequest Request { get; set; }
 
-        public AddTachographCommand(Guid truckUid, InsertTachographRequest request)
+        public AddTachographCommand(Guid companyUid, Guid truckUid, InsertTachographRequest request)
         {
+            CompanyUid = companyUid;
             TruckUid = truckUid;
             Request = request;
         }
     }
 
-    public record AddTachographCommandHandler : IRequestHandler<AddTachographCommand, string>
+    public record AddTachographCommandHandler : IRequestHandler<AddTachographCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ITruckRepository _truckRepository;
@@ -28,23 +30,22 @@ namespace ProjectX.Commands.TruckCertificates
             _truckRepository = truckRepository;
         }
 
-        public async Task<string> Handle(AddTachographCommand command, CancellationToken cancellationToken)
+        public async Task Handle(AddTachographCommand command, CancellationToken cancellationToken)
         {
-            var dbTruck = await _truckRepository.GetTruckByUidAsync(command.TruckUid);
+            var dbTruck = await _truckRepository.GetTruckByUidAsync(command.CompanyUid, command.TruckUid);
 
             var newTachograph = new Storage.Entities.Tachograph.Tachograph
             {
-                CreatedOn = DateTime.UtcNow,
                 Uid = Guid.NewGuid(),
+                CreatedOn = DateTime.UtcNow,                
                 ExpiryDate = command.Request.ExpiryDate,
-                IsExpired = command.Request.IsExpired
+                IsExpired = command.Request.IsExpired,
+                Truck = dbTruck
             };
 
             dbTruck.Tachographs.Add(newTachograph);
 
             await _unitOfWork.SaveChangesAsync();
-
-            return "Tachograph added.";
         }
     }
 }

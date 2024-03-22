@@ -6,7 +6,7 @@ using ProjectX.Storage.UnitOfWork;
 
 namespace ProjectX.Commands.Trailer
 {
-    public record AddTrailerCommand : IRequest<string>
+    public record AddTrailerCommand : IRequest
     {
         public Guid CompanyUid { get; set; }
         public InsertTrailerRequest TrailerRequest { get; set; }
@@ -18,7 +18,7 @@ namespace ProjectX.Commands.Trailer
         }
     }
 
-    public record AddTrailerCommandHandler : IRequestHandler<AddTrailerCommand, string>
+    public record AddTrailerCommandHandler : IRequestHandler<AddTrailerCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICompanyRepository _companyRepository;
@@ -31,7 +31,7 @@ namespace ProjectX.Commands.Trailer
             _trailerRepository = trailerRepository;
         }
 
-        public async Task<string> Handle(AddTrailerCommand command, CancellationToken cancellationToken)
+        public async Task Handle(AddTrailerCommand command, CancellationToken cancellationToken)
         {
             var dbCompany = await _companyRepository.GetCompanyByUidAsync(command.CompanyUid);
 
@@ -55,11 +55,7 @@ namespace ProjectX.Commands.Trailer
 
             dbCompany.Trailers.Add(newTrailer);
 
-            await _trailerRepository.InsertTrailerAsync(newTrailer);
-
             await _unitOfWork.SaveChangesAsync();
-
-            return "Trailer added.";
         }
     }
 }

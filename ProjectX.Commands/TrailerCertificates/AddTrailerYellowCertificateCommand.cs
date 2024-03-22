@@ -5,20 +5,21 @@ using ProjectX.Storage.UnitOfWork;
 
 namespace ProjectX.Commands.TrailerCertificates
 {
-    public record AddTrailerYellowCertificateCommand : IRequest<string>
+    public record AddTrailerYellowCertificateCommand : IRequest
     {
+        public Guid CompanyUid { get; set; }
         public Guid TrailerUid { get; set; }
-
         public InsertTrailerYellowCertificateRequest Request { get; set; }
 
-        public AddTrailerYellowCertificateCommand(Guid trailerUid, InsertTrailerYellowCertificateRequest request)
+        public AddTrailerYellowCertificateCommand(Guid companyUid, Guid trailerUid, InsertTrailerYellowCertificateRequest request)
         {
+            CompanyUid = companyUid;
             TrailerUid = trailerUid;
             Request = request;
         }
     }
 
-    public record AddTrailerYellowCertificateCommandHandler : IRequestHandler<AddTrailerYellowCertificateCommand, string>
+    public record AddTrailerYellowCertificateCommandHandler : IRequestHandler<AddTrailerYellowCertificateCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ITrailerRepository _trailerRepository;
@@ -29,14 +30,14 @@ namespace ProjectX.Commands.TrailerCertificates
             _trailerRepository = trailerRepository;
         }
 
-        public async Task<string> Handle(AddTrailerYellowCertificateCommand command, CancellationToken cancellationToken)
+        public async Task Handle(AddTrailerYellowCertificateCommand command, CancellationToken cancellationToken)
         {
-            var dbTrailer = await _trailerRepository.GetTrailerByUidAsync(command.TrailerUid);
+            var dbTrailer = await _trailerRepository.GetTrailerByUidAsync(command.CompanyUid, command.TrailerUid);
 
             var newTrailerYellowCertificate = new Storage.Entities.YellowCertificate.TrailerYellowCertificate
             {
-                CreatedOn = DateTime.UtcNow,
                 Uid = Guid.NewGuid(),
+                CreatedOn = DateTime.UtcNow,
                 ExpiryDate = command.Request.ExpiryDate,
                 IsExpired = command.Request.IsExpired
             };
@@ -44,8 +45,6 @@ namespace ProjectX.Commands.TrailerCertificates
             dbTrailer.YellowCertificates.Add(newTrailerYellowCertificate);
 
             await _unitOfWork.SaveChangesAsync();
-
-            return "Yellow Certificate added.";
         }
     }
 }
