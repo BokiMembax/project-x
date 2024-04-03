@@ -6,7 +6,7 @@ using ProjectX.Common.Auth;
 using ProjectX.Queries.Queries.Company;
 
 namespace ProjectX.Api.Controllers
-{    
+{
     [ApiController]
     [Route("api/companies")]
     public class CompanyController : ControllerBase
@@ -24,6 +24,7 @@ namespace ProjectX.Api.Controllers
         [HttpGet("{companyUid}")]
         public async Task<Queries.Contracts.Responses.Company.CompanyDto> GetCompany([FromRoute] Guid companyUid)
         {
+            a
             return await _sender.Send(new GetCompanyQuery(companyUid));
         }
 
