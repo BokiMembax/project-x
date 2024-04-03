@@ -24,6 +24,7 @@ namespace ProjectX.Api.Controllers
         [HttpGet("{companyUid}")]
         public async Task<Queries.Contracts.Responses.Company.CompanyDto> GetCompany([FromRoute] Guid companyUid)
         {
+            error
             return await _sender.Send(new GetCompanyQuery(companyUid));
         }
 
