@@ -12,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -36,6 +37,8 @@ builder.Services.AddAuthentication(options =>
 builder.Services.RegisterRepository();
 
 var app = builder.Build();
+
+app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
