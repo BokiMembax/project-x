@@ -4,6 +4,8 @@ using ProjectX.Queries;
 using ProjectX.Queries.Database.Context;
 using ProjectX.Storage.Database.Context;
 using ProjectX.Storage.Repositories.Company;
+using ProjectX.Storage.Repositories.Trailer;
+using ProjectX.Storage.Repositories.Truck;
 using ProjectX.Storage.Repositories.User;
 using ProjectX.Storage.UnitOfWork;
 
@@ -26,6 +28,10 @@ namespace ProjectX.Api.Registers
             services.AddScoped<ICompanyRepository, CompanyRepository>();
 
             services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<ITruckRepository, TruckRepository>();
+
+            services.AddScoped<ITrailerRepository, TrailerRepository>();
 
             services.AddMediatR(config =>
             {

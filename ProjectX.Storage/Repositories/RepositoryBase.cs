@@ -5,7 +5,7 @@ namespace ProjectX.Storage.Repositories
 {
     public class RepositoryBase
     {
-        private readonly IProjectXContext _projectXContext;
+        protected readonly IProjectXContext _projectXContext;
 
         public RepositoryBase(IProjectXContext projectXContext)
         {

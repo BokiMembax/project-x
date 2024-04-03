@@ -24,6 +24,8 @@ namespace ProjectX.Storage.Database.Configuration
             builder.Property(x => x.Email).HasColumnName("Email").HasMaxLength(255).IsRequired();
             builder.Property(x => x.PhoneNumber).HasColumnName("PhoneNumber").HasMaxLength(255).IsRequired();
 
+            builder.HasMany(x => x.Trucks).WithOne(x => x.Company).HasForeignKey(x => x.CompanyId);
+            builder.HasMany(x => x.Trailers).WithOne(x => x.Company).HasForeignKey(x => x.CompanyId);
             builder.HasMany(x => x.Users).WithOne(x => x.Company).HasForeignKey(x => x.CompanyId);
         }
     }

@@ -27,6 +27,12 @@ namespace ProjectX.Api.Controllers
             return await _sender.Send(new GetUserQuery(userUid));
         }
 
+        [HttpGet]
+        public async Task<IReadOnlyList<Queries.Contracts.Responses.User.UserDto>> GetUsers([FromRoute] Guid companyUid)
+        {
+            return await _sender.Send(new GetUsersQuery(companyUid));
+        }
+
         [HttpPost]
         public async Task AddUser([FromRoute] Guid companyUid, [FromBody] InsertUserRequest userRequest)
         {

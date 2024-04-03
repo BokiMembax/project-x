@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ProjectX.Common.Auth
+﻿namespace ProjectX.Common.Auth
 {
     public class SignUpRequest
     {

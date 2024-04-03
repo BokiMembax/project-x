@@ -6,7 +6,7 @@ using ProjectX.Common.Auth;
 using ProjectX.Queries.Queries.Company;
 
 namespace ProjectX.Api.Controllers
-{    
+{
     [ApiController]
     [Route("api/companies")]
     public class CompanyController : ControllerBase
