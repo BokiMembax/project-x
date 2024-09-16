@@ -4,7 +4,7 @@ using ProjectX.Queries.Entities.Common;
 
 namespace ProjectX.Queries
 {
-    public class RepositoryBase
+    public abstract class RepositoryBase
     {
         protected readonly IProjectXReadOnlyContext _projectXReadOnlyContext;
 
