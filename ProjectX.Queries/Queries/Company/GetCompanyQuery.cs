@@ -20,7 +20,7 @@ namespace ProjectX.Queries.Queries.Company
         public GetCompanyQueryHandler(IProjectXReadOnlyContext projectReadOnlyContext) : base(projectReadOnlyContext) { }
 
         public async Task<CompanyDto> Handle(GetCompanyQuery request, CancellationToken cancellationToken)
-        {           
+        {
             var response = await _projectXReadOnlyContext.Set<Entities.Company.Company>()
                                                                               .Where(x => x.Uid == request.CompanyUid)
                                                                               .Select(x => new CompanyDto
@@ -33,6 +33,8 @@ namespace ProjectX.Queries.Queries.Company
                                                                                   PhoneNumber = x.PhoneNumber
                                                                               })
                                                                               .SingleOrDefaultAsync();
+
+            var test = await All<Entities.Company.Company>().SingleOrDefaultAsync(x => x.Uid == request.CompanyUid);
 
             if (response != null)
             {
