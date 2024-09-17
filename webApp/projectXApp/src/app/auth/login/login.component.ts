@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +16,11 @@ export class LoginComponent {
   
   public formGroup: FormGroup;
 
-  constructor(private _fb: FormBuilder, private _httpClient: HttpClient) {
-    this.formGroup = _fb.group({
+  constructor(
+    private _fb: FormBuilder,
+    private _authService: AuthService,
+    private _router: Router) {
+    this.formGroup = this._fb.group({
       "email": [],
       "password": []
     })
@@ -28,16 +33,27 @@ export class LoginComponent {
         password: this.formGroup.controls["password"].value
       }
 
-      this._httpClient.post("https://localhost:7272/api/auth/login", request).subscribe(
-        (response: any) => {
-          console.log(response);
+      // this._authService.login(request).subscribe(
+      //   (response: any) => {
+      //     console.log(response);
+      //   },
+      //   (error: any) => {
+      //     console.log(error);
+      //   },
+      //   () => {
+      //       console.log("finalize");
+      //   }
+      // )
+
+      this._authService.login(request).subscribe({
+        next: (res) => {
+          console.log(res);
+          localStorage.setItem('token', JSON.stringify(res.token));
+          this._router.navigate(['/company']);
         },
-        (error: any) => {
-          console.log(error);
-        },
-        () => {
-            console.log("finalize");
-        }
+        error: (e) => {console.log(e)},
+        complete: () => console.log("Finalize - Complete")
+      }
       )
     }
   }
