@@ -1,8 +1,21 @@
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-light">Light</button>
-<button type="button" class="btn btn-dark">Dark</button>
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-12 login-form-1">
+            <h3>Login Form 1</h3>
+            
+            <form [formGroup]="formGroup">
+
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Email *" formControlName="email"/>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Your Password *" formControlName="password"/>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger" (click)="onLogin()">Login</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
