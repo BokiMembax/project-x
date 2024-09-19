@@ -1,11 +1,11 @@
-﻿using MediatR;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using ProjectX.Common.Auth;
 using ProjectX.Storage.Repositories.User;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace ProjectX.Commands.Auth
 {
@@ -44,13 +44,13 @@ namespace ProjectX.Commands.Auth
                     IsSuccess = true
                 };
 
-            }            
+            }
 
             return new TokenResponseDto
             {
                 Token = null,
                 IsSuccess = false
-            };   
+            };
         }
 
         private string CreateToken(Storage.Entities.User.User user)
@@ -72,7 +72,7 @@ namespace ProjectX.Commands.Auth
                     audience: audience,
                     claims: claims,
                     expires: DateTime.UtcNow.AddMinutes(10),
-                    signingCredentials: credentials                
+                    signingCredentials: credentials
                 );
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);

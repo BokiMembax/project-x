@@ -11,14 +11,6 @@ export class AuthService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  public getData(): Observable<any> {
-    return this._httpClient.get<any>(this.apiUrl).pipe(
-      tap(response => {
-        localStorage.setItem('data', JSON.stringify(response));
-      })
-    );
-  }
-
   public login(request: any): Observable<any> {
     return this._httpClient.post("https://localhost:7272/api/auth/login", request);
   }
