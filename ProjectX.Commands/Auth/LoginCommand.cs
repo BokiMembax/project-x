@@ -17,8 +17,6 @@ namespace ProjectX.Commands.Auth
         {
             AccountRequest = accountRequest;
         }
-
-        asdasdasdasd
     }
 
     public class LoginCommandHandler : IRequestHandler<LoginCommand, TokenResponseDto>
