@@ -32,32 +32,27 @@ namespace ProjectX.Commands.Auth
 
         public async Task<TokenResponseDto> Handle(LoginCommand command, CancellationToken cancellationToken)
         {
-            var dbUser = await _userRepository.GetUserByEmailAsync(command.AccountRequest.Email);
+            UserLoginDto dbUserLoginDto = await _userRepository.GetUserByEmailAsync(command.AccountRequest.Email);
 
-            if (BCrypt.Net.BCrypt.Verify(command.AccountRequest.Password, dbUser.PasswordHash))
+            if (BCrypt.Net.BCrypt.Verify(command.AccountRequest.Password, dbUserLoginDto.UserPassword))
             {
-                string token = CreateToken(dbUser);
+                string token = CreateToken(dbUserLoginDto);
 
                 return new TokenResponseDto
                 {
                     Token = token,
-                    IsSuccess = true
+                    CompanyUid = dbUserLoginDto.CompanyUid
                 };
-
             }
 
-            return new TokenResponseDto
-            {
-                Token = null,
-                IsSuccess = false
-            };
+            throw new Exception("Invalid password");
         }
 
-        private string CreateToken(Storage.Entities.User.User user)
+        private string CreateToken(UserLoginDto user)
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(ClaimTypes.Email, user.UserEmail)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("Jwt:Key").Value!));

@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { BrowserService } from '../../services/browser-storage.service';
 import { NgIf } from '@angular/common';
+import { TokenResponseDto } from '../../shared/models/responses';
 
 @Component({
   selector: 'app-login',
@@ -44,11 +45,11 @@ export class LoginComponent implements OnInit {
       }
 
       this._authService.login(request).subscribe({
-        next: (res) => {
+        next: (res: TokenResponseDto) => {
 
-          this._browserService.setStorageItem('token', res.token);
+          this._browserService.setStorageItem('token', res);
           
-          this._router.navigate(['/company']);
+          this._router.navigate(['/company', res.companyUid]);
         },
         error: (e) => {console.log(e)},
         complete: () => console.log("Finalize - Complete")
@@ -58,12 +59,12 @@ export class LoginComponent implements OnInit {
   }
 
   public isAlreadyLoggedIn(): void {
-    const token = this._browserService.getStorageItem("token");
+    const token: TokenResponseDto | undefined = this._browserService.getStorageItem("token");
 
     this.showLoginForm = token ? false : true;
 
     if(token){
-      this._router.navigate(['/company']);
+      this._router.navigate(['/company', token.companyUid]);
     }
   }
 }
