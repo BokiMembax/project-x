@@ -1,4 +1,6 @@
-﻿namespace ProjectX.Storage.Repositories.User
+﻿using ProjectX.Common.Auth;
+
+namespace ProjectX.Storage.Repositories.User
 {
     public interface IUserRepository
     {
@@ -10,7 +12,7 @@
         /// <summary>
         /// Return the user with this email from the database
         /// </summary>
-        Task<Entities.User.User> GetUserByEmailAsync(string email);
+        Task<UserLoginDto> GetUserByEmailAsync(string email);
 
         /// <summary>
         /// Check if a truck with this embg or email or phone number exists in the database
