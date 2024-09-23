@@ -32,5 +32,6 @@ namespace ProjectX.Api.Controllers
         {
             await _sender.Send(new SignUpCommand(accountRequest));
         }
+        asd
     }
 }
