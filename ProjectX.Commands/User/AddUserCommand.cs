@@ -51,6 +51,19 @@ namespace ProjectX.Commands.User
                 LastName = command.UserRequest.LastName,
                 Email = command.UserRequest.Email,
                 PhoneNumber = command.UserRequest.PhoneNumber,
+                DateOfEmployment = command.UserRequest.DateOfEmployment,
+                DriversCertificateSerialNumber = command.UserRequest.DriversCertificateSerialNumber,
+                DriversCertificateIssueDate = command.UserRequest.DriversCertificateIssueDate,
+                DriversCertificateExpiryDate = command.UserRequest.DriversCertificateExpiryDate,
+                DrivingLicenseSerialNumber = command.UserRequest.DrivingLicenseSerialNumber,
+                DrivingLicenseIssueDate = command.UserRequest.DrivingLicenseIssueDate,
+                DrivingLicenseExpiryDate = command.UserRequest.DrivingLicenseExpiryDate,
+                PassportSerialNumber = command.UserRequest.PassportSerialNumber,
+                PassportIssueDate = command.UserRequest.PassportIssueDate,
+                PassportExpiryDate = command.UserRequest.PassportExpiryDate,
+                IdentityCardSerialNumber = command.UserRequest.IdentityCardSerialNumber,
+                IdentityCardIssueDate = command.UserRequest.IdentityCardIssueDate,
+                IdentityCardExpiryDate = command.UserRequest.IdentityCardExpiryDate,
                 Company = dbCompany
             };
 
