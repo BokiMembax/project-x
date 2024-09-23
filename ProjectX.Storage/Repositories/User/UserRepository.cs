@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProjectX.Common.Auth;
 using ProjectX.Storage.Database.Context;
 
 namespace ProjectX.Storage.Repositories.User
@@ -22,16 +23,24 @@ namespace ProjectX.Storage.Repositories.User
             return dbUser;
         }
 
-        public async Task<Entities.User.User> GetUserByEmailAsync(string email)
-        {        
-            var dbUser = await All<Entities.User.User>().SingleOrDefaultAsync(x => x.Email == email);
+        public async Task<UserLoginDto> GetUserByEmailAsync(string email)
+        {
+            UserLoginDto? userLoginDto = await (from dbUser in All<Entities.User.User>().Where(x => x.Email == email)
+                                                join dbCompany in All<Entities.Company.Company>()
+                                                   on dbUser.CompanyId equals dbCompany.Id
+                                                select new UserLoginDto
+                                                {
+                                                    UserEmail = dbUser.Email,
+                                                    UserPassword = dbUser.PasswordHash,
+                                                    CompanyUid = dbCompany.Uid,
+                                                }).SingleOrDefaultAsync();
 
-            if (dbUser == null)
+            if (userLoginDto is null)
             {
                 throw new Exception($"User with Email {email} not found.");
             }
 
-            return dbUser;
+            return userLoginDto;
         }
 
         public async Task<bool> DoesUserExistAsync(string embg, string email, string phoneNumber)
