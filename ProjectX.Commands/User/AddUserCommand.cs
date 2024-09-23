@@ -52,20 +52,37 @@ namespace ProjectX.Commands.User
                 Email = command.UserRequest.Email,
                 PhoneNumber = command.UserRequest.PhoneNumber,
                 DateOfEmployment = command.UserRequest.DateOfEmployment,
-                DriversCertificateSerialNumber = command.UserRequest.DriversCertificateSerialNumber,
                 DriversCertificateIssueDate = command.UserRequest.DriversCertificateIssueDate,
                 DriversCertificateExpiryDate = command.UserRequest.DriversCertificateExpiryDate,
-                DrivingLicenseSerialNumber = command.UserRequest.DrivingLicenseSerialNumber,
                 DrivingLicenseIssueDate = command.UserRequest.DrivingLicenseIssueDate,
                 DrivingLicenseExpiryDate = command.UserRequest.DrivingLicenseExpiryDate,
-                PassportSerialNumber = command.UserRequest.PassportSerialNumber,
                 PassportIssueDate = command.UserRequest.PassportIssueDate,
                 PassportExpiryDate = command.UserRequest.PassportExpiryDate,
-                IdentityCardSerialNumber = command.UserRequest.IdentityCardSerialNumber,
                 IdentityCardIssueDate = command.UserRequest.IdentityCardIssueDate,
                 IdentityCardExpiryDate = command.UserRequest.IdentityCardExpiryDate,
                 Company = dbCompany
             };
+
+            if (command.UserRequest.DriversCertificateSerialNumber != null)
+            {
+                newUser.DriversCertificateSerialNumber = command.UserRequest.DriversCertificateSerialNumber;
+            }
+
+            if (command.UserRequest.DrivingLicenseSerialNumber != null)
+            {
+                newUser.DrivingLicenseSerialNumber = command.UserRequest.DrivingLicenseSerialNumber;
+            }
+
+            if (command.UserRequest.PassportSerialNumber != null)
+            {
+                newUser.PassportSerialNumber = command.UserRequest.PassportSerialNumber;
+            }
+
+            if (command.UserRequest.IdentityCardSerialNumber != null)
+            {
+                newUser.IdentityCardSerialNumber = command.UserRequest.IdentityCardSerialNumber;
+            }
+
 
             dbCompany.Users.Add(newUser);
 
