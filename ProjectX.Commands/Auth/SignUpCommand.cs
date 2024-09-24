@@ -65,38 +65,9 @@ namespace ProjectX.Commands.Auth
                 LastName = command.AccountRequest.LastName,
                 Email = command.AccountRequest.UserEmail,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(command.AccountRequest.Password),
-                PhoneNumber = command.AccountRequest.UserPhoneNumber,
-                DateOfEmployment = command.AccountRequest.DateOfEmployment,
-                DriversCertificateIssueDate = command.AccountRequest.DriversCertificateIssueDate,
-                DriversCertificateExpiryDate = command.AccountRequest.DriversCertificateExpiryDate,
-                DrivingLicenseIssueDate = command.AccountRequest.DrivingLicenseIssueDate,
-                DrivingLicenseExpiryDate = command.AccountRequest.DrivingLicenseExpiryDate,
-                PassportIssueDate = command.AccountRequest.PassportIssueDate,
-                PassportExpiryDate = command.AccountRequest.PassportExpiryDate,
-                IdentityCardIssueDate = command.AccountRequest.IdentityCardIssueDate,
-                IdentityCardExpiryDate = command.AccountRequest.IdentityCardExpiryDate,
+                PhoneNumber = command.AccountRequest.UserPhoneNumber,                
                 Company = newCompany
-            };
-
-            if (command.AccountRequest.DriversCertificateSerialNumber != null)
-            {
-                newUser.DriversCertificateSerialNumber = command.AccountRequest.DriversCertificateSerialNumber;
-            }
-
-            if (command.AccountRequest.DrivingLicenseSerialNumber != null)
-            {
-                newUser.DrivingLicenseSerialNumber = command.AccountRequest.DrivingLicenseSerialNumber;
-            }
-
-            if (command.AccountRequest.PassportSerialNumber != null)
-            {
-                newUser.PassportSerialNumber = command.AccountRequest.PassportSerialNumber;
-            }
-
-            if (command.AccountRequest.IdentityCardSerialNumber != null)
-            {
-                newUser.IdentityCardSerialNumber = command.AccountRequest.IdentityCardSerialNumber;
-            }
+            };            
 
             newCompany.Users.Add(newUser);
 
