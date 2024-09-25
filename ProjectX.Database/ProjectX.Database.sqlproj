@@ -71,7 +71,6 @@
     <Build Include="Tables\TrailerCemtCertificate.sql" />
     <Build Include="Tables\TrailerGreenCardCertificate.sql" />
     <Build Include="Tables\TrailerYellowCertificate.sql" />
-    <Build Include="Tables\UserUniqueIndexForNullableProperties.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ProjectX.Database.publish.xml" />
