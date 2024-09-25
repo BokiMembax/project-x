@@ -42,7 +42,7 @@ namespace ProjectX.Storage.Entities.User
         /// <summary>
         /// Drivers Certificate Serial Number
         /// </summary>
-        public string DriversCertificateSerialNumber { get; set; } = string.Empty;
+        public string? DriversCertificateSerialNumber { get; set; } = null;
 
         /// <summary>
         /// Drivers Certificate Issue Date
@@ -57,7 +57,7 @@ namespace ProjectX.Storage.Entities.User
         /// <summary>
         /// Driving License Serial Number
         /// </summary>
-        public string DrivingLicenseSerialNumber { get; set; } = string.Empty;
+        public string? DrivingLicenseSerialNumber { get; set; } = null;
 
         /// <summary>
         /// Driving License Issue Date
@@ -72,7 +72,7 @@ namespace ProjectX.Storage.Entities.User
         /// <summary>
         /// Passport Serial Number
         /// </summary>
-        public string PassportSerialNumber { get; set; } = string.Empty;
+        public string? PassportSerialNumber { get; set; } = null;
 
         /// <summary>
         /// Passport Issue Date
@@ -87,7 +87,7 @@ namespace ProjectX.Storage.Entities.User
         /// <summary>
         /// Identity Card Serial Number
         /// </summary>
-        public string IdentityCardSerialNumber { get; set; } = string.Empty;
+        public string? IdentityCardSerialNumber { get; set; } = null;
 
         /// <summary>
         /// Identity Card Issue Date

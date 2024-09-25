@@ -24,7 +24,7 @@ namespace ProjectX.Api.Controllers
         {
             await _sender.Send(new SignUpCommand(accountRequest));
         }
-
+        
         [HttpPost]
         [Route("login")]
         public async Task<TokenResponseDto> Login([FromBody] LoginRequest accountRequest)

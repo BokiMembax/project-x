@@ -22,6 +22,6 @@
 
         public string Password { get; set; } = string.Empty;
 
-        public string UserPhoneNumber { get; set; } = string.Empty;
+        public string UserPhoneNumber { get; set; } = string.Empty;        
     }
 }

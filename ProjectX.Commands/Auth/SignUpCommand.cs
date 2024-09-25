@@ -65,9 +65,9 @@ namespace ProjectX.Commands.Auth
                 LastName = command.AccountRequest.LastName,
                 Email = command.AccountRequest.UserEmail,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(command.AccountRequest.Password),
-                PhoneNumber = command.AccountRequest.UserPhoneNumber,
+                PhoneNumber = command.AccountRequest.UserPhoneNumber,                
                 Company = newCompany
-            };
+            };            
 
             newCompany.Users.Add(newUser);
 

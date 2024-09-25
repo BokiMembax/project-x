@@ -14,25 +14,25 @@
 
         public DateTime? DateOfEmployment { get; set; }
 
-        public string DriversCertificateSerialNumber { get; set; } = string.Empty;
+        public string? DriversCertificateSerialNumber { get; set; } = null;
 
         public DateTime? DriversCertificateIssueDate { get; set; }
 
         public DateTime? DriversCertificateExpiryDate { get; set; }
 
-        public string DrivingLicenseSerialNumber { get; set; } = string.Empty;
+        public string? DrivingLicenseSerialNumber { get; set; } = null;
 
         public DateTime? DrivingLicenseIssueDate { get; set; }
 
         public DateTime? DrivingLicenseExpiryDate { get; set; }
 
-        public string PassportSerialNumber { get; set; } = string.Empty;
+        public string? PassportSerialNumber { get; set; } = null;
 
         public DateTime? PassportIssueDate { get; set; }
 
         public DateTime? PassportExpiryDate { get; set; }
 
-        public string IdentityCardSerialNumber { get; set; } = string.Empty;
+        public string? IdentityCardSerialNumber { get; set; } = null;
 
         public DateTime? IdentityCardIssueDate { get; set; }
 
