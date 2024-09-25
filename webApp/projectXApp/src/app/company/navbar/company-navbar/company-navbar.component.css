@@ -1,8 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  /* Set height to 150px to match background image */
+  overflow: hidden;
+  /* Ensure content below will cover it after scrolling */
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background-image: url('/assets/images/background-image-1.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  /* Ensure it is behind the navbar */
+}
+
+.navbar {
+  position: sticky;
+  justify-content: center;
+  top: 0;
+  background-color: #333;
+  background: linear-gradient(to bottom, #7e7e7e, #fff);
+  z-index: 2;
+  /* On top of the background image */
+  width: 100%;
+  padding: 25x 0;
+}
+
+.navbar ul {
+  list-style-type: none;
+  display: flex;
+  /* Enable flexbox */
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  padding: 0;
+  /* Remove any default padding */
+  margin: 0;
+  /* Remove any default margin */
+  height: 100%;
+  /* Ensures full height for centering */
+}
+
+.navbar ul li {
+  padding: 25px 30px;
+}
+
+.navbar ul li a {
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 50px;
+  border-radius: .25rem;
+  transition: .5s ease;
+}
+
+.navbar ul li a:hover {
+  color: #ffa900;
+  background-color: #000;
+  border-radius: .25rem;
+  text-shadow: 0px 0px 2px #fff;
+}
+
+.content {
+  padding: 20px;
+  height: 2000px;
+  /* For scroll effect */
+  background-color: #f4f4f4;
+}
+
+
+
+
+
+
+
 .container {
-    display: grid;
-    max-width: 1200px;
-    grid-gap: 5px;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-template-rows: 300px 300px;
-    grid-auto-rows: 300px;
+  display: grid;
+  max-width: 1200px;
+  margin-top: 200px;
+  margin-bottom: 200px;
+  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: 300px 300px;
+  grid-auto-rows: 300px;
+}
+
+.main-btn {
+  background-color: lavender;
+  opacity: 0.6;
+  transition: 0.3s;
+  font-size: 36px;
+  cursor: crosshair;
+  /* border-radius: 5%; */
+}
+
+.main-btn:hover {
+  opacity: 1;
 }
