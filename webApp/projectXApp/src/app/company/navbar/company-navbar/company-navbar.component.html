@@ -4,13 +4,10 @@
 
 <nav class="navbar">
   <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#home">|</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#home">|</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#home">|</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a [routerLink]="['/company', companyUid, '']">My company</a></li>
+      <li><a [routerLink]="['/company', companyUid, 'employees']">Employees</a></li>
+      <li><a [routerLink]="['/company', companyUid, 'about']">About</a></li>
+      <li><a [routerLink]="['/company', companyUid, 'contact']">Contact</a></li>
   </ul>
 </nav>
 
