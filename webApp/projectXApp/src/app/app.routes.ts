@@ -14,17 +14,17 @@ export const routes: Routes = [
         {
           path: 'employees',
           loadComponent: () => import('./company/employee/employee.component')
-            .then(m => m.EmployeeComponent), canActivate: [BaseGuard]
+            .then(m => m.EmployeeComponent)
         },
         {
           path: 'about',
           loadComponent: () => import('./company/about/about/about.component')
-            .then(m => m.AboutComponent), canActivate: [BaseGuard]
+            .then(m => m.AboutComponent)
         },
         {
           path: 'contact',
           loadComponent: () => import('./company/contact/contact/contact.component')
-            .then(m => m.ContactComponent), canActivate: [BaseGuard]
+            .then(m => m.ContactComponent)
         }
       ]
   },
