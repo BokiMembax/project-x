@@ -12,6 +12,11 @@ export const routes: Routes = [
       .then(m => m.CompanyComponent), canActivate: [BaseGuard],
       children: [
         {
+          path: '',
+          loadComponent: () => import('./company/company-info/company-info.component')
+            .then(m => m.CompanyInfoComponent)
+        },
+        {
           path: 'employees',
           loadComponent: () => import('./company/employee/employee.component')
             .then(m => m.EmployeeComponent)
