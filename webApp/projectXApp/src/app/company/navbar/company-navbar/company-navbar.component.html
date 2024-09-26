@@ -4,10 +4,10 @@
 
 <nav class="navbar">
   <ul>
-      <li><a [routerLink]="['/company', companyUid, '']">My company</a></li>
-      <li><a [routerLink]="['/company', companyUid, 'employees']">Employees</a></li>
-      <li><a [routerLink]="['/company', companyUid, 'about']">About</a></li>
-      <li><a [routerLink]="['/company', companyUid, 'contact']">Contact</a></li>
+      <li><a [routerLink]="['']">My company</a></li>
+      <li><a [routerLink]="['employees']">Employees</a></li>
+      <li><a [routerLink]="['about']">About</a></li>
+      <li><a [routerLink]="['contact']">Contact</a></li>
   </ul>
 </nav>
 
@@ -39,12 +39,13 @@
 </nav> -->
 
 
-<div class="container text-center mx-auto">
+<!-- <div class="container text-center mx-auto">
   <div class="main-btn d-flex justify-content-center align-items-center">1</div>
   <div class="main-btn d-flex justify-content-center align-items-center">2</div>
   <div class="main-btn d-flex justify-content-center align-items-center">3</div>
   <div class="main-btn d-flex justify-content-center align-items-center">4</div>
   <div class="main-btn d-flex justify-content-center align-items-center">5</div>
   <div class="main-btn d-flex justify-content-center align-items-center">6</div>
-</div>
-<p>company-navbar works!</p>
+</div> -->
+
+<router-outlet></router-outlet>

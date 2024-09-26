@@ -9,24 +9,24 @@ export const routes: Routes = [
   {
     path: 'company/:companyUid',
     loadComponent: () => import('./company/company.component')
-      .then(m => m.CompanyComponent), canActivate: [BaseGuard]
+      .then(m => m.CompanyComponent), canActivate: [BaseGuard],
+      children: [
+        {
+          path: 'employees',
+          loadComponent: () => import('./company/employee/employee.component')
+            .then(m => m.EmployeeComponent), canActivate: [BaseGuard]
+        },
+        {
+          path: 'about',
+          loadComponent: () => import('./company/about/about/about.component')
+            .then(m => m.AboutComponent), canActivate: [BaseGuard]
+        },
+        {
+          path: 'contact',
+          loadComponent: () => import('./company/contact/contact/contact.component')
+            .then(m => m.ContactComponent), canActivate: [BaseGuard]
+        }
+      ]
   },
-  { path: 'login', component: LoginComponent },
-
-  {
-    path: 'company/:companyUid/employees',
-    loadComponent: () => import('./company/employee/employee.component')
-      .then(m => m.EmployeeComponent), canActivate: [BaseGuard]
-  },
-
-  {
-    path: 'company/:companyUid/about',
-    loadComponent: () => import('./company/about/about/about.component')
-      .then(m => m.AboutComponent), canActivate: [BaseGuard]
-  },
-  {
-    path: 'company/:companyUid/contact',
-    loadComponent: () => import('./company/contact/contact/contact.component')
-      .then(m => m.ContactComponent), canActivate: [BaseGuard]
-  }
+  { path: 'login', component: LoginComponent }
 ];
