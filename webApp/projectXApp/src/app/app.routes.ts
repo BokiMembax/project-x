@@ -17,14 +17,9 @@ export const routes: Routes = [
             .then(m => m.EmployeeComponent)
         },
         {
-          path: 'about',
-          loadComponent: () => import('./company/about/about/about.component')
-            .then(m => m.AboutComponent)
-        },
-        {
-          path: 'contact',
-          loadComponent: () => import('./company/contact/contact/contact.component')
-            .then(m => m.ContactComponent)
+          path: 'vehicles',
+          loadComponent: () => import('./company/vehicle/vehicle.component')
+            .then(m => m.VehicleComponent)
         }
       ]
   },
