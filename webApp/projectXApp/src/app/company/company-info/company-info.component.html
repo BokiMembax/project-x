@@ -1,3 +1,19 @@
+
+<div class="container mt-5 mb-5">
+  <form>
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First name</label>
+      <input [formControl]="firstName" type="text" class="form-control" id="firstName">
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last name</label>
+      <input [formControl]="lastName" type="text" class="form-control" id="lastName">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="printCompany()">Submit</button>
+  </form>
+</div>
+
+
 <div class="container mt-5">
   <div class="row row-cols-2 g-4">
     <!-- Card 1 -->
